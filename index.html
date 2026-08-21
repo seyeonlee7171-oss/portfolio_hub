@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>포트폴리오 — 데이터 분석·AX 연구원</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{
+  --bg:#FFFFFF;
+  --bg-tint:#F7F9FC;
+  --ink:#141A22;
+  --gray:#5F6B7A;
+  --gray-light:#93A0B0;
+  --line:#EDF0F4;
+  --line-mid:#E1E6EC;
+  --blue:#3B6EF3;
+  --violet:#7B5CF0;
+  --grad:linear-gradient(93deg,#3B6EF3 8%,#7B5CF0 92%);
+  --card-shadow:0 1px 2px rgba(20,26,34,.04), 0 8px 24px rgba(20,26,34,.05);
+  --card-shadow-hover:0 2px 4px rgba(20,26,34,.05), 0 16px 40px rgba(59,110,243,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.65;
+  font-size:16px;
+  letter-spacing:-0.01em;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  word-break:keep-all;
+  overflow-wrap:break-word;
+}
+::selection{background:var(--blue);color:#fff}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:4px}
+
+/* ---------- NAV ---------- */
+nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,.8);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-size:15px;font-weight:800;letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
+.nav-logo::before{
+  content:'';width:10px;height:10px;border-radius:3px;background:var(--grad);
+  display:inline-block;transform:rotate(45deg);
+}
+.nav-links{display:flex;gap:4px;list-style:none}
+.nav-links a{
+  text-decoration:none;color:var(--gray);font-size:14px;font-weight:500;
+  padding:8px 13px;border-radius:8px;transition:.15s;
+}
+.nav-links a:hover{color:var(--ink);background:var(--bg-tint)}
+
+/* ---------- HERO ---------- */
+header{padding:110px 0 96px;position:relative}
+header::before{
+  content:'';position:absolute;top:-180px;right:-160px;width:560px;height:560px;
+  background:radial-gradient(closest-side,rgba(59,110,243,.10),rgba(123,92,240,.06) 55%,transparent 75%);
+  border-radius:50%;pointer-events:none;
+}
+header::after{
+  content:'';position:absolute;bottom:-120px;left:-200px;width:480px;height:480px;
+  background:radial-gradient(closest-side,rgba(123,92,240,.07),transparent 70%);
+  border-radius:50%;pointer-events:none;
+}
+.hero-inner{position:relative;z-index:1}
+.hero-label{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13.5px;font-weight:600;color:var(--blue);
+  background:rgba(59,110,243,.08);border:1px solid rgba(59,110,243,.15);
+  padding:7px 14px;border-radius:100px;margin-bottom:28px;
+}
+.hero-label::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--blue)}
+h1{
+  font-size:clamp(34px,5.2vw,54px);font-weight:800;line-height:1.32;
+  letter-spacing:-.035em;margin-bottom:28px;
+}
+h1 .grad{
+  background:var(--grad);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-sub{
+  max-width:620px;color:var(--gray);font-size:17px;line-height:1.8;margin-bottom:52px;
+}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:720px}
+.stat{
+  background:var(--bg);border:1px solid var(--line);border-radius:16px;
+  padding:22px 24px;box-shadow:var(--card-shadow);
+}
+.stat b{
+  display:block;font-size:23px;font-weight:800;letter-spacing:-.02em;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.stat span{font-size:13px;color:var(--gray-light);font-weight:500}
+
+/* ---------- SECTION 공통 ---------- */
+section{padding:96px 0}
+.sec-tint{background:var(--bg-tint)}
+.sec-label{
+  display:inline-block;font-size:13px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--blue);margin-bottom:12px;
+}
+h2{font-size:clamp(25px,3.2vw,32px);font-weight:800;letter-spacing:-.03em;margin-bottom:12px}
+.sec-desc{color:var(--gray);font-size:15.5px;margin-bottom:52px;max-width:560px}
+
+/* ---------- 프로필 ---------- */
+.profile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.p-card{
+  background:var(--bg);border:1px solid var(--line);border-radius:18px;
+  padding:30px 28px;box-shadow:var(--card-shadow);transition:.25s;
+}
+.p-card:hover{transform:translateY(-3px);box-shadow:var(--card-shadow-hover);border-color:rgba(59,110,243,.25)}
+.p-icon{
+  width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  margin-bottom:18px;background:#F2F4F8;border:1px solid var(--line);color:var(--ink);
+}
+.p-icon svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.p-card h3{font-size:16.5px;font-weight:700;margin-bottom:12px;letter-spacing:-.02em}
+.p-card ul{list-style:none}
+.p-card li{font-size:14px;color:var(--gray);padding:6px 0;line-height:1.6}
+
+/* ---------- 기술 ---------- */
+.skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.skill{
+  background:var(--bg);border:1px solid var(--line);border-radius:16px;
+  padding:24px 26px;box-shadow:var(--card-shadow);
+}
+.skill dt{font-size:14.5px;font-weight:700;letter-spacing:-.015em;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.skill dt::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--grad)}
+.skill dd{font-size:14px;color:var(--gray);line-height:1.7}
+.skill dd b{color:var(--ink);font-weight:600}
+
+/* ---------- 프로젝트 ---------- */
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.proj{
+  background:var(--bg);border:1px solid var(--line);border-radius:18px;
+  padding:30px;box-shadow:var(--card-shadow);transition:.25s;
+  display:flex;flex-direction:column;
+}
+.proj:hover{transform:translateY(-4px);box-shadow:var(--card-shadow-hover);border-color:rgba(59,110,243,.25)}
+.proj.wide{grid-column:1 / -1}
+.proj-meta{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.chip{
+  font-size:12px;font-weight:600;padding:4px 11px;border-radius:100px;letter-spacing:-.01em;
+}
+.chip-blue{background:rgba(59,110,243,.09);color:var(--blue)}
+.chip-violet{background:rgba(123,92,240,.09);color:var(--violet)}
+.chip-green{background:rgba(16,163,127,.09);color:#0E9271}
+.proj-date{font-size:13px;color:var(--gray-light);font-weight:500}
+.proj h3{font-size:18px;font-weight:700;letter-spacing:-.025em;line-height:1.45;margin-bottom:4px}
+.proj .org{font-size:13.5px;color:var(--gray-light);margin-bottom:16px}
+.proj ul{list-style:none}
+.proj li{font-size:14px;color:var(--gray);padding:5px 0 5px 17px;position:relative;line-height:1.65}
+.proj li::before{content:'';position:absolute;left:2px;top:13px;width:5px;height:5px;border-radius:50%;background:var(--line-mid)}
+.proj li b{color:var(--ink);font-weight:600}
+
+/* ---------- 타임라인 ---------- */
+.tl{position:relative;padding-left:28px;max-width:760px}
+.tl::before{
+  content:'';position:absolute;left:7px;top:10px;bottom:10px;width:2px;
+  background:linear-gradient(to bottom,var(--line-mid),var(--line-mid));border-radius:2px;
+}
+.tl-item{position:relative;padding-bottom:40px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{
+  content:'';position:absolute;left:-26px;top:7px;width:12px;height:12px;border-radius:50%;
+  background:#fff;border:3px solid var(--line-mid);
+}
+.tl-item.milestone::before{border-color:var(--blue);background:var(--blue);box-shadow:0 0 0 5px rgba(59,110,243,.12)}
+.tl-date{font-size:13.5px;font-weight:600;color:var(--gray-light)}
+.tl-item.milestone .tl-date{color:var(--blue)}
+.tl-item h3{font-size:16.5px;font-weight:700;letter-spacing:-.02em;margin:3px 0 2px}
+.tl-org{font-size:13.5px;color:var(--gray-light);margin-bottom:8px}
+.tl-item p{font-size:14px;color:var(--gray);line-height:1.7;max-width:620px}
+
+/* ---------- 자격 ---------- */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.cert{
+  background:var(--bg);border:1px solid var(--line);border-radius:14px;
+  padding:22px 24px;box-shadow:var(--card-shadow);transition:.2s;
+}
+.cert:hover{border-color:rgba(59,110,243,.25)}
+.cert .c-date{font-size:12.5px;color:var(--blue);font-weight:600}
+.cert b{display:block;font-size:15px;font-weight:700;margin:5px 0 2px;letter-spacing:-.02em}
+.cert span{font-size:12.5px;color:var(--gray-light)}
+
+/* ---------- FOOTER (다크) ---------- */
+footer{
+  background:#12161D;color:#fff;padding:96px 0 72px;margin-top:20px;
+  position:relative;overflow:hidden;
+}
+footer::before{
+  content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);
+  width:720px;height:420px;
+  background:radial-gradient(closest-side,rgba(59,110,243,.22),rgba(123,92,240,.1) 55%,transparent 75%);
+  pointer-events:none;
+}
+.foot-inner{position:relative;z-index:1}
+footer .sec-label{color:#8FA8F5}
+footer h2{color:#fff}
+.contact-note{color:#A5AFBD;font-size:15.5px;max-width:520px;margin-bottom:36px;line-height:1.8}
+.contact-links{display:flex;gap:10px;flex-wrap:wrap}
+.btn{
+  display:inline-block;text-decoration:none;font-size:14.5px;font-weight:600;
+  padding:13px 26px;border-radius:12px;transition:.2s;letter-spacing:-.01em;
+}
+.btn-primary{background:var(--grad);color:#fff}
+.btn-primary:hover{opacity:.9;transform:translateY(-1px)}
+.btn-ghost{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#E7EBF1}
+.btn-ghost:hover{background:rgba(255,255,255,.12)}
+.foot-sub{margin-top:64px;font-size:13px;color:#5E6875}
+
+/* ---------- 부록(Outputs) ---------- */
+.out-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.out-card{
+  background:var(--bg);border:1px solid var(--line);border-radius:18px;
+  overflow:hidden;box-shadow:var(--card-shadow);transition:.25s;cursor:pointer;
+  display:flex;flex-direction:column;text-align:left;padding:0;font:inherit;color:inherit;
+}
+.out-card:hover{transform:translateY(-4px);box-shadow:var(--card-shadow-hover);border-color:rgba(59,110,243,.25)}
+.out-thumb{
+  position:relative;aspect-ratio:16/9.4;background:var(--bg-tint);
+  border-bottom:1px solid var(--line);overflow:hidden;
+}
+.out-thumb img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.out-thumb .out-hover{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(20,26,34,.42);opacity:0;transition:.2s;
+}
+.out-card:hover .out-hover{opacity:1}
+.out-hover span{
+  color:#fff;font-size:13.5px;font-weight:600;padding:9px 18px;border-radius:100px;
+  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(4px);
+}
+.out-body{padding:22px 24px 24px;display:flex;flex-direction:column;gap:8px;flex:1}
+.out-body .proj-meta{margin-bottom:2px}
+.out-body h3{font-size:16.5px;font-weight:700;letter-spacing:-.02em;line-height:1.45}
+.out-body p{font-size:13.5px;color:var(--gray);line-height:1.65}
+.out-file{margin-top:auto;padding-top:10px;font-size:12.5px;color:var(--gray-light);display:flex;align-items:center;gap:6px}
+.out-file svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+/* ---------- 모달 뷰어 ---------- */
+.mvw{position:fixed;inset:0;z-index:100;display:none}
+.mvw.open{display:block}
+.mvw-back{position:absolute;inset:0;background:rgba(12,16,22,.62);backdrop-filter:blur(3px)}
+.mvw-panel{
+  position:absolute;inset:24px;max-width:1080px;margin:0 auto;
+  background:var(--bg);border-radius:20px;overflow:hidden;
+  display:flex;flex-direction:column;box-shadow:0 24px 80px rgba(0,0,0,.35);
+  animation:mvwIn .22s ease;
+}
+@keyframes mvwIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.mvw-head{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+  padding:20px 24px 16px;border-bottom:1px solid var(--line);
+}
+.mvw-head h3{font-size:17px;font-weight:700;letter-spacing:-.02em;line-height:1.4}
+.mvw-head .mvw-org{font-size:13px;color:var(--gray-light);margin-top:2px}
+.mvw-actions{display:flex;gap:8px;flex-shrink:0}
+.mvw-btn{
+  font-size:13px;font-weight:600;padding:8px 14px;border-radius:10px;cursor:pointer;
+  border:1px solid var(--line-mid);background:var(--bg);color:var(--ink);
+  text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:.15s;font-family:inherit;
+}
+.mvw-btn:hover{background:var(--bg-tint)}
+.mvw-btn.primary{background:var(--grad);color:#fff;border:none}
+.mvw-btn.primary:hover{opacity:.9}
+.mvw-sum{
+  padding:14px 24px;border-bottom:1px solid var(--line);background:var(--bg-tint);
+  font-size:13.5px;color:var(--gray);line-height:1.7;
+}
+.mvw-sum b{color:var(--ink);font-weight:600}
+.mvw-frame{flex:1;min-height:0;background:#3c3f45}
+.mvw-frame iframe{width:100%;height:100%;border:none;display:block}
+.mvw-mobilenote{display:none;padding:12px 24px;font-size:12.5px;color:var(--gray-light);border-top:1px solid var(--line)}
+@media (max-width:768px){
+  .out-grid{grid-template-columns:1fr}
+  .mvw-panel{inset:12px}
+  .mvw-head{flex-direction:column}
+  .mvw-mobilenote{display:block}
+}
+/* ---------- 리빌 ---------- */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+.reveal.on{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
+
+@media (max-width:768px){
+  .proj-grid{grid-template-columns:1fr}
+  .hero-stats{grid-template-columns:1fr;max-width:420px}
+  header{padding:80px 0 70px}
+  section{padding:72px 0}
+  .nav-links a{padding:8px 8px;font-size:13.5px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <div class="nav-logo">Portfolio</div>
+    <ul class="nav-links">
+      <li><a href="#profile">프로필</a></li>
+      <li><a href="#skills">기술</a></li>
+      <li><a href="#projects">프로젝트</a></li>
+      <li><a href="#timeline">이력</a></li>
+      <li><a href="#outputs">부록</a></li>
+      <li><a href="#contact">연락</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap hero-inner">
+    <span class="hero-label">제약 · 데이터 분석 & AX</span>
+    <h1>데이터를 정제하고,<br>반복을 자동화해,<br><span class="grad">의사결정에 쓰이는 결과</span>로 만듭니다.</h1>
+    <p class="hero-sub">
+      제약공학에서 익힌 기록·검증 습관이 데이터 업무의 기본기입니다.
+      소비·유동인구·공간 데이터를 다차원으로 분석하고, 반복 업무는 Python과
+      생성형 AI로 자동화하며, 결과는 비전공 의사결정자도 바로 읽고 쓸 수 있는 형태로 전달합니다.
+    </p>
+    <div class="hero-stats">
+      <div class="stat reveal"><b>분석 기간 60% 이상 단축</b><span>환경보건 과제 업무 프로세스 개선(AI 활용) · 약 2달 → 1달 미만</span></div>
+      <div class="stat reveal"><b>카드소비, 유동인구 데이터 관리 자동화</b><span>데이터 검수 및 정제 자동화 코드 제작하여 업무 부담 감소에 기여</span></div>
+      <div class="stat reveal"><b>매뉴얼 작성 경험 10회 이상</b><span>부서 운영 관련 회계행정, 코드 활용, 서버 구축 등 비전문가용 매뉴얼 작성</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="profile">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-label">Profile</div>
+      <h2>세 가지 축으로 일합니다</h2>
+    </div>
+    <div class="profile-grid" style="margin-top:44px">
+      <div class="p-card reveal">
+        <div class="p-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V11"/><path d="M10 20V4"/><path d="M16 20v-6"/><path d="M21 20H3"/></svg></div>
+        <h3>데이터 분석 · 인사이트</h3>
+        <ul>
+          <li>○ 소비·유동인구·인구·공간·환경 데이터의 정제와 결합</li>
+          <li>○ 지역·연령·성별·소득·시간대·업종을 교차한 다차원 분석</li>
+          <li>○ 수치 나열이 아니라 외부요인·데이터 한계까지 해석해 전달</li>
+        </ul>
+      </div>
+      <div class="p-card reveal">
+        <div class="p-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12L13 2Z"/></svg></div>
+        <h3>AX · 업무자동화</h3>
+        <ul>
+          <li>○ 데이터 검수, 지도·그래프 제작, 뉴스 요약의 자동화 대상 발굴</li>
+          <li>○ 폴더구조·입력기준·출력형식·배포방식까지 함께 설계</li>
+          <li>○ AI 서비스의 비용·로그·사용제한을 운영 관점에서 개선</li>
+        </ul>
+      </div>
+      <div class="p-card reveal">
+        <div class="p-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="13" height="13" rx="2"/><path d="M8 21h11a2 2 0 0 0 2-2V8"/></svg></div>
+        <h3>운영 · 문서 · 협업</h3>
+        <ul>
+          <li>○ 과제 일정, 예산·정산, 보고서·발표자료, 행사 운영 지원</li>
+          <li>○ 유관기관·비개발 직군과 자료·일정·결과 형태 조율</li>
+          <li>○ 담당자가 바뀌어도 이어지도록 데이터·문서·코드 구조화</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="sec-tint">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-label">Skills</div>
+      <h2>기술 · 도구</h2>
+      <p class="sec-desc">실제 업무에서 수행한 범위를 기준으로 정리했습니다.</p>
+    </div>
+    <div class="skill-grid">
+      <dl class="skill reveal"><dt>데이터 처리 · 분석</dt><dd><b>Python(pandas, matplotlib), Excel</b> — 정제, 집계, 교차분석, 검수 자동화, 지표 산출, 전후 비교 시각화</dd></dl>
+      <dl class="skill reveal"><dt>공간정보</dt><dd><b>QGIS, GeoJSON</b> — 행정동·격자 단위 공간자료 가공, 단계구분도, 접근성·취약성 분석 보조</dd></dl>
+      <dl class="skill reveal"><dt>웹 결과물</dt><dd><b>HTML 인터랙티브 지도</b> — 조건·변수 선택형 지도와 그래프, 결과 이미지 저장, 사용자 직접 조회</dd></dl>
+      <dl class="skill reveal"><dt>생성형 AI · 자동화</dt><dd><b>GPT, Claude, UiPath</b> — 예약 작업, 뉴스 수집·요약, 로그·비용 관리, 프롬프트 최적화, RPA 수집</dd></dl>
+      <dl class="skill reveal"><dt>시각화 · 기획</dt><dd><b>Power BI, Figma, PowerPoint, HWP</b> — 분석결과 시각화, 제안서·보고서·발표자료 구성</dd></dl>
+      <dl class="skill reveal"><dt>제약 · 품질 기초</dt><dd><b>GMP, 밸리데이션, HPLC 실습</b> — 실험 절차, 기록·검증, 정량·정성 분석, 품질관리 이해</dd></dl>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-label">Projects</div>
+      <h2>주요 프로젝트</h2>
+      <p class="sec-desc">울산빅데이터센터에서 수행한 분석과제와 자동화 경험입니다.</p>
+    </div>
+    <div class="proj-grid">
+
+      <article class="proj wide reveal">
+        <div class="proj-meta">
+          <span class="chip chip-violet">공간분석 · 자동화</span>
+          <span class="proj-date">2025.10 – 2026.06</span>
+        </div>
+        <h3>울산지역 환경보건 취약가능지역 평가 고도화</h3>
+        <div class="org">울산연구원 · 환경보건 관련 협력 과제</div>
+        <ul>
+          <li><b>55개 행정동 × 5개 영역 × 27개 변수</b>를 정비하고 방향을 통일해 누적영향평가 수행</li>
+          <li>원자료에서 분석용 GeoJSON과 지도·그래프가 포함된 HTML을 자동 생성하는 흐름으로 개선</li>
+          <li>변수·영역·취약점수 조건을 직접 선택하는 <b>인터랙티브 맵</b>을 구현하고, GitHub Private Repository와 Cloudflare로 소스 비공개 배포환경 구성</li>
+          <li>반복 가공·요청 대응을 줄여 변수 적합성과 모델결과 검토에 시간 재배분</li>
+          <li><b>인터랙티브 맵 바로가기</b> — <a href="https://seyeonlee7171-oss.github.io/ulsan_map/">https://seyeonlee7171-oss.github.io/ulsan_map/</a></li>
+        </ul>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj-meta">
+          <span class="chip chip-blue">지역경제 분석</span>
+          <span class="proj-date">2026.03 – 2026.06</span>
+        </div>
+        <h3>샤힌 프로젝트 전·후 소비 변화 및 지역경제 파급효과 분석</h3>
+        <div class="org">울산연구원 분석과제</div>
+        <ul>
+          <li>2023.03 착공 기준 전후 구간을 설정, 온산읍·온양읍·청량읍 중심 비교</li>
+          <li>카드소비·인구·세대·<b>50m 격자 유동인구</b>·상수도 자료를 다기준 분석</li>
+          <li>효과를 단정하지 않고 <b>혼입 가능성과 데이터 한계를 함께 제시</b></li>
+          <li>산업활동 효과와 배후 정주 효과로 구분해 후속 검토의 기준자료로 정리</li>
+        </ul>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj-meta">
+          <span class="chip chip-blue">소비 분석</span>
+          <span class="proj-date">2025.10 – 2025.12</span>
+        </div>
+        <h3>울산시민 소득계층별 소비·이용 상권 특성 분석</h3>
+        <div class="org">울산연구원 · 울산광역시 협업 과제</div>
+        <ul>
+          <li>소득계층·성별·연령대·시간대·행정동·업종 기준 카드소비 교차분석</li>
+          <li>데이터 정제, 분석설계, 결과산출, 보고·발표자료 작성 참여</li>
+          <li>의사결정자 관점의 계층별·지역별 소비특성으로 결과 재구성</li>
+        </ul>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj-meta">
+          <span class="chip chip-green">자동화</span>
+          <span class="proj-date">2025.07 – 현재 · 분기별</span>
+        </div>
+        <h3>유동인구·카드소비 데이터 검수·융합 자동화</h3>
+        <div class="org">울산빅데이터센터 데이터 운영</div>
+        <ul>
+          <li>폴더 투입 → 코드 실행만으로 컬럼·결측·형식·이상 여부 자동 확인</li>
+          <li>수작업 검수시간을 <b>약 1시간에서 5분 이내</b>로 단축</li>
+          <li>서로 다른 연령기준을 공통기준으로 정제해 클라우드에 적재</li>
+        </ul>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj-meta">
+          <span class="chip chip-green">AI 운영</span>
+          <span class="proj-date">2025.07 – 현재</span>
+        </div>
+        <h3>생성형 AI 서비스 운영 및 활용환경 개선</h3>
+        <div class="org">울산빅데이터센터 상시업무</div>
+        <ul>
+          <li>GPT Pro 20x·Claude Max 5x의 지출, 사용 로그, 오류·불편사항 관리</li>
+          <li>예약 작업으로 <b>매일 08:30 분야별 뉴스 자동 검색·요약</b> 체계 구성</li>
+          <li>Claude 이용제한 원인을 로그로 규명, 입력방식을 개선해 추가 구매 없이 업무 지속</li>
+        </ul>
+      </article>
+
+      <article class="proj wide reveal">
+        <div class="proj-meta">
+          <span class="chip chip-violet">교육 프로젝트</span>
+          <span class="proj-date">2024.02 – 2024.08</span>
+        </div>
+        <h3>KT AIVLE SCHOOL 프로젝트</h3>
+        <div class="org">KT · 대한상공회의소 — AI/DX 과정 · 115일 · 840시간</div>
+        <ul>
+          <li><b>스마트양식장 관제 솔루션</b> — 현업 인터뷰로 기술 도입 중심 구상을 관제·비용·지원 중심으로 수정, 객체탐지·환경데이터 모니터링 구조 구현, Self-Motivation 부문 수상</li>
+          <li><b>YOLOv5 안면인식 보안 시스템</b> — 자동 라벨링으로 안면 랜드마크 데이터를 대량 구축하고 Flip·Perspective·Noise·Mosaic 증강으로 오인식 개선, 제작부터 시연까지 전담</li>
+          <li>유통 판매량 예측, 버스정류장 공공데이터 분석, UiPath 뉴스 수집 자동화 등 수행</li>
+          <li>코딩 마스터스에서 교육과정 내 최고 성적</li>
+        </ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="timeline" class="sec-tint">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-label">Timeline</div>
+      <h2>전체 이력</h2>
+      <p class="sec-desc">제약공학의 기록·검증 훈련이 데이터 분석의 기반이 된 과정입니다.</p>
+    </div>
+    <div class="tl">
+      <div class="tl-item reveal">
+        <div class="tl-date">2019.02</div>
+        <h3>삼일여자고등학교 졸업</h3>
+        <div class="tl-org">이과 과정</div>
+      </div>
+      <div class="tl-item milestone reveal">
+        <div class="tl-date">2020.02 – 2024.08</div>
+        <h3>인제대학교 김해캠퍼스 제약공학과 학사</h3>
+        <div class="tl-org">3.64 / 4.5 졸업</div>
+        <p>의약품 분석, GMP, 밸리데이션, 제제학 등 이론·실습 이수. 실험조건·기록·검증의 중요성을 체득하고 정량·정성 분석과 결과 해석을 반복 경험.</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">2021 – 2022</div>
+        <h3>제약 실험 프로그램 이수</h3>
+        <div class="tl-org">병원미생물학 · 약제학 · GMP · 제약생화학 · 기기분석 · HPLC</div>
+        <p>미생물 배양·항균활성 측정, 정제 용출·HPLC 평가, 설비 적격성평가, SDS-PAGE·RT-PCR, UV·HPLC·GC 분석법 밸리데이션 실습.</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">학부 3학년 · 약 1년</div>
+        <h3>제약공학 캡스톤 디자인 팀장</h3>
+        <div class="tl-org">인제대학교 제약공학과 · 연구평가 2회 모두 A+</div>
+        <p>액상 소화제를 발포정으로 바꾸는 제형 변경(저온 진공 동결건조·직타 공정 설계, 흡습성에 따른 캡핑 이슈 해결)과 메트포르민 정제의 타정압 5개 조건 품질 비교(경도·마손도·용출시험, HPLC·UV 정량)를 이끎. 장비 고장 시 타 실험실 협조와 벤더 커뮤니케이션으로 일정을 복구하고 예산·조달·기록을 총괄.</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">2023.07 – 2023.08</div>
+        <h3>바이오·제약 품질관리 직무교육</h3>
+        <div class="tl-org">인제대학교 연계 · 코멘토</div>
+        <p>미생물 한도·무균시험, 이화학시험 데이터 분석, 품질시험 이슈분석과 기기사용기록서 양식 제정.</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">2023.07 – 2023.09</div>
+        <h3>생물의약공정연구실 연구생</h3>
+        <div class="tl-org">인제대학교</div>
+        <p>기초실험, 비품·시약 관리, 영문 논문 검색·리딩. 기록 정확성과 업무 연속성의 중요성을 체득.</p>
+      </div>
+      <div class="tl-item milestone reveal">
+        <div class="tl-date">2024.02 – 2024.08</div>
+        <h3>KT AIVLE SCHOOL AI/DX 과정</h3>
+        <div class="tl-org">KT · 대한상공회의소 — 115일 · 840시간</div>
+        <p>Python, 클라우드, 머신러닝·딥러닝, IT 인프라, 서비스 기획을 학습하고 6개 프로젝트 수행. 커리어 전환의 분기점.</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">2024.08</div>
+        <h3>국제공수도대회 운영 지원</h3>
+        <div class="tl-org">점수관리 · Excel · 영어/일본어 통역</div>
+      </div>
+      <div class="tl-item milestone reveal">
+        <div class="tl-date">2025.07 – 현재</div>
+        <h3>울산연구원 울산빅데이터센터 연구원</h3>
+        <div class="tl-org">경제산업연구실</div>
+        <p>센터 운영, 공공·민간데이터 분석과제, 보고·발표, 지출·정산·일정관리, 생성형 AI 서비스 운영. 울산광역시와 협업하며 정책부서의 분석수요를 데이터 과제로 구체화.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certs">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-label">Certificates</div>
+      <h2>자격 · 어학</h2>
+    </div>
+    <div class="cert-grid" style="margin-top:40px">
+      <div class="cert reveal"><div class="c-date">2023.05</div><b>MOS Office Excel 2016</b><span>Microsoft</span></div>
+      <div class="cert reveal"><div class="c-date">2023.12</div><b>DATA Excel 2급</b><span>YBM 데이터분석기술평가</span></div>
+      <div class="cert reveal"><div class="c-date">2024.06</div><b>데이터분석 준전문가 ADsP</b><span>한국데이터 관련 자격</span></div>
+      <div class="cert reveal"><div class="c-date">2025.04</div><b>TOEIC Speaking IH</b><span>Intermediate High</span></div>
+    </div>
+  </div>
+</section>
+
+
+<section id="outputs" class="sec-tint">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-label">Appendix · Outputs</div>
+      <h2>아웃풋 아카이브</h2>
+      <p class="sec-desc">직접 수행한 연구·프로젝트의 결과물입니다. 카드를 클릭하면 요약과 함께 원문을 바로 열람할 수 있습니다.</p>
+    </div>
+    <div class="out-grid">
+
+      <button class="out-card reveal" type="button" data-output="capstone2">
+        <div class="out-thumb">
+          <img src="assets/thumbs/thumb-capstone2.png" alt="캡스톤디자인 II 결과보고서 표지" loading="lazy">
+          <div class="out-hover"><span>클릭하여 열람</span></div>
+        </div>
+        <div class="out-body">
+          <div class="proj-meta">
+            <span class="chip chip-violet">연구보고서</span>
+            <span class="proj-date">2022.09 – 2022.12 · 팀장</span>
+          </div>
+          <h3>정제의 혼합·타정 조건에 따른 물성의 과학적 분석</h3>
+          <p>메트포르민 정제를 직타법·습식과립법 × 타정압 5조건으로 제조하고 경도·마손도·용출시험으로 품질 상관관계를 규명한 캡스톤디자인 II 결과보고서.</p>
+          <div class="out-file"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>PDF · 17p</div>
+        </div>
+      </button>
+
+      <button class="out-card reveal" type="button" data-output="pres">
+        <div class="out-thumb">
+          <img src="assets/thumbs/thumb-pres.png" alt="캡스톤 발표자료 슬라이드" loading="lazy">
+          <div class="out-hover"><span>클릭하여 열람</span></div>
+        </div>
+        <div class="out-body">
+          <div class="proj-meta">
+            <span class="chip chip-blue">발표자료</span>
+            <span class="proj-date">2022.12 · 최종발표</span>
+          </div>
+          <h3>메트포르민 함유 정제의 타정 공정 연관성 — 발표자료</h3>
+          <p>연구목적 → 재료·공정 → 시험결과 → 고찰 흐름으로 구성한 26장 슬라이드. 조성표, 직타·습식 공정 절차, 시험별 결과 그래프 수록.</p>
+          <div class="out-file"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>PDF(PPT 변환) · 26 slides</div>
+        </div>
+      </button>
+
+      <button class="out-card reveal" type="button" data-output="capstone4">
+        <div class="out-thumb">
+          <img src="assets/thumbs/thumb-capstone4.png" alt="구강청결제 고찰 보고서 표지" loading="lazy">
+          <div class="out-hover"><span>클릭하여 열람</span></div>
+        </div>
+        <div class="out-body">
+          <div class="proj-meta">
+            <span class="chip chip-violet">조사·고찰 보고서</span>
+            <span class="proj-date">캡스톤디자인 IV · 입향기 팀</span>
+          </div>
+          <h3>구강청결제의 사용 실태와 실용성 및 부작용에 관한 고찰</h3>
+          <p>시판 구강청결제의 성분·제형·작용기전을 문헌 기반으로 조사하고, 자체 설문으로 사용 실태를 분석해 효과와 한계·올바른 사용법을 제시한 보고서.</p>
+          <div class="out-file"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>PDF</div>
+        </div>
+      </button>
+
+      <a class="out-card reveal" href="https://seyeonlee7171-oss.github.io/ulsan_map/" target="_blank" rel="noopener" style="text-decoration:none">
+        <div class="out-thumb" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(59,110,243,.08),rgba(123,92,240,.10))">
+          <svg viewBox="0 0 24 24" style="width:56px;height:56px;stroke:var(--blue);fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round"><path d="M9 20l-6-3V4l6 3 6-3 6 3v13l-6-3-6 3z"/><path d="M9 7v13"/><path d="M15 4v13"/></svg>
+          <div class="out-hover"><span>새 탭에서 열기 ↗</span></div>
+        </div>
+        <div class="out-body">
+          <div class="proj-meta">
+            <span class="chip chip-green">웹 아웃풋 · Live</span>
+            <span class="proj-date">2025 – 2026 · 울산연구원</span>
+          </div>
+          <h3>울산 환경보건 취약가능지역 인터랙티브 맵</h3>
+          <p>55개 행정동 × 27개 변수의 누적영향평가 결과를 조건 선택형 지도로 조회하는 웹 결과물. 원자료 → GeoJSON → HTML 자동 생성 파이프라인으로 제작.</p>
+          <div class="out-file"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>GitHub Pages 배포</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap foot-inner">
+    <div class="sec-label">Contact</div>
+    <h2>함께 일하고 싶다면</h2>
+    <p class="contact-note">
+      데이터가 현장의 결정에 닿는 과정을 만드는 일에 관심이 많습니다.
+      분석·자동화·협업 관련 문의를 환영합니다.
+    </p>
+    <div class="contact-links">
+      <a class="btn btn-primary" href="mailto:your@email.com">이메일 · 1412inlight@gmail.com</a>
+      <a class="btn btn-ghost" href="tel:010-0000-0000">전화 · 010-7244-2341</a>
+    </div>
+    <div class="foot-sub">© 2026 Portfolio</div>
+  </div>
+</footer>
+
+<script>
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target);} });
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+<div class="mvw" id="mvw" role="dialog" aria-modal="true" aria-labelledby="mvw-title">
+  <div class="mvw-back" data-close></div>
+  <div class="mvw-panel">
+    <div class="mvw-head">
+      <div>
+        <h3 id="mvw-title"></h3>
+        <div class="mvw-org" id="mvw-org"></div>
+      </div>
+      <div class="mvw-actions">
+        <a class="mvw-btn primary" id="mvw-open" href="#" target="_blank" rel="noopener">전체화면으로 열기 ↗</a>
+        <button class="mvw-btn" type="button" data-close>닫기 ✕</button>
+      </div>
+    </div>
+    <div class="mvw-sum" id="mvw-sum"></div>
+    <div class="mvw-frame"><iframe id="mvw-iframe" title="문서 미리보기"></iframe></div>
+    <div class="mvw-mobilenote">모바일에서는 미리보기가 제한될 수 있습니다. 상단 ‘전체화면으로 열기’를 이용해 주세요.</div>
+  </div>
+</div>
+<script>
+const OUTPUTS = {
+  capstone2: {
+    title: "정제의 혼합, 타정 조건에 따른 물성의 과학적 분석",
+    org: "인제대학교 제약공학과 캡스톤디자인 II · 나우란 팀(팀장) · 2022.09–12",
+    file: "assets/outputs/capstone2-metformin-report.pdf",
+    summary: "<b>무엇을:</b> 메트포르민(당뇨 치료제) 정제를 직타법·습식과립법 2개 공정 × 타정압 5조건(80–200kg/cm²)으로 직접 제조하고, 약전 시험법을 응용한 경도·마손도·용출시험으로 물성을 비교. <b>결과:</b> 타정압이 높을수록 경도 증가·마손도 감소·용출률 감소, 직타법 정제가 습식 대비 높은 경도. 마손도는 전 조건 1.0% 이하로 적합, BCS Class III 용출기준(20–30분 내 80%)은 두 공정 모두 140kg/cm²까지 충족. 3차원 표면도로 공정–물성 상관관계를 시각화. <b>역할:</b> 실험 설계·일정 총괄, 장비 차질 시 타 실험실 협업으로 대체 확보, 예산·기록 관리."
+  },
+  pres: {
+    title: "메트포르민 함유 정제의 타정 공정 연관성 — 최종발표자료",
+    org: "캡스톤디자인 최종발표 · 26 slides · PPT 원본을 PDF로 변환",
+    file: "assets/outputs/capstone-presentation.pdf",
+    summary: "<b>구성:</b> 연구목적 → 실험 재료·과정(조성표, 직타/습식 공정 절차) → 시험결과(경도·마손도·용출 그래프) → 고찰. <b>포인트:</b> API·부형제·결합제·붕해제·활택제 역할과 MCC101/102 선정 근거를 정리하고, 압력 조건별 결과를 비교 그래프로 전달. 비전공자도 흐름을 따라올 수 있도록 시험법별 절차를 사진과 함께 단계화."
+  },
+  capstone4: {
+    title: "구강청결제의 사용 실태와 실용성 및 부작용에 관한 고찰",
+    org: "인제대학교 제약공학과 캡스톤디자인 · 입향기 팀",
+    file: "assets/outputs/capstone4-mouthwash-report.pdf",
+    summary: "<b>무엇을:</b> 시판 구강청결제의 성분(CPC·클로르헥시딘·방향유·불소 등)·제형·작용기전을 문헌 기반으로 조사하고, 구취감소·항균효과 연구와 자체 설문(20대 대상 사용 실태)을 결합해 분석. <b>결론:</b> 구취감소·구강질환 예방 효과는 근거가 있으나, ‘유해균 99.9% 억제’류 문구는 실험실 조건 결과로 실사용 근거로는 부족함을 지적. 과대광고·구강건조증·치아부식·칫솔질 대체 불가 등 한계와 올바른 사용법을 제시."
+  }
+};
+const mvw = document.getElementById('mvw');
+const mvwTitle = document.getElementById('mvw-title');
+const mvwOrg = document.getElementById('mvw-org');
+const mvwSum = document.getElementById('mvw-sum');
+const mvwFrame = document.getElementById('mvw-iframe');
+const mvwOpen = document.getElementById('mvw-open');
+
+function openOutput(id){
+  const d = OUTPUTS[id]; if(!d) return;
+  mvwTitle.textContent = d.title;
+  mvwOrg.textContent = d.org;
+  mvwSum.innerHTML = d.summary;
+  mvwFrame.src = d.file + '#view=FitH';
+  mvwOpen.href = d.file;
+  mvw.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeOutput(){
+  mvw.classList.remove('open');
+  mvwFrame.src = '';
+  document.body.style.overflow = '';
+}
+document.querySelectorAll('[data-output]').forEach(el=>{
+  el.addEventListener('click', ()=>openOutput(el.dataset.output));
+});
+mvw.querySelectorAll('[data-close]').forEach(el=>el.addEventListener('click', closeOutput));
+document.addEventListener('keydown', e=>{ if(e.key==='Escape' && mvw.classList.contains('open')) closeOutput(); });
+</script>
+
+</body>
+</html>
